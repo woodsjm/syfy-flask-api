@@ -1,5 +1,6 @@
 from flask import Blueprint
 
+
 user = Blueprint('user', 'user', url_prefix='/user')
 
 @user.route('/login', methods=['GET'])
