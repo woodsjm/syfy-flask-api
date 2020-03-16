@@ -1,4 +1,5 @@
 from flask import Blueprint, Flask
+from flask_cors import CORS
 import sys
 import os
 
@@ -17,6 +18,8 @@ app.secret_key = 'randomstringxyxzyz'
 db = create_db(app)
 grab_db_session(db)
 
+CORS(api, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(api)

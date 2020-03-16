@@ -15,6 +15,6 @@ def retrieve_images():
         return jsonify(data, status)
     else:
         status = {"code": 200, "message": "OK"}
-        return jsonify(data, status)
+        return jsonify(data=data, status=status)
     
 from processes.background import grab_image_data

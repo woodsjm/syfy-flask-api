@@ -35,8 +35,13 @@ def grab_image_data():
         return "Failed to Retrieve images from DB"
     else:
         image_data = []
-        for document in image_data_cursor:
-            image_data.append(document['public_id'])
+        inner = []
+        for doc in image_data_cursor:
+            inner.append(doc['public_id'])
+            if len(inner) == 3:
+                image_data.append(inner)
+                inner = []
+        image_data.append(inner)
         return image_data
 
 
