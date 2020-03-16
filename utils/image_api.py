@@ -13,7 +13,7 @@ class ImageApi:
     def which_cloud(self):
         print(self.name)
 
-    def fetch_image_data(self):
+    def fetch_cloudinary_images(self):
         url_list = cloudinary.utils.cloudinary_url("lg.json", type="list")
         try:
             response = requests.get(url_list[0])

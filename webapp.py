@@ -2,7 +2,7 @@ from flask import Blueprint, Flask
 import sys
 import os
 
-from processes.background import update_image_data
+from processes.background import grab_db_session
 from database.config import create_db
 from routes.api import api
 from routes.user import user
@@ -15,7 +15,8 @@ app = Flask(__name__)
 app.secret_key = 'randomstringxyxzyz'
 
 db = create_db(app)
-update_image_data(db)
+grab_db_session(db)
+
 
 app.register_blueprint(user)
 app.register_blueprint(api)
