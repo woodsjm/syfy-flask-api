@@ -18,6 +18,7 @@ Debug(app)
 app.secret_key = 'randomstringxyxzyz'
 
 db = create_db(app)
+#db.db['images'].create_index("public_id", unique=True)
 grab_db_session(db)
 
 CORS(api, origins=['http://localhost:3000'], supports_credentials=True)
@@ -32,4 +33,4 @@ def index():
 
 
 # if __name__ == '__main__':
-app.run(debug=DEBUG, port=PORT)
+app.run(debug=DEBUG, port=PORT, use_reloader=False)

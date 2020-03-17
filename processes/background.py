@@ -22,7 +22,6 @@ def update_image_data():
         try:
             coll = db['images']
             store_images_cursor = coll.insert(images)
-            coll.createIndex({"public_id": 1}, {unique: true})
         # ***FIX: ADD PROPER EXCEPTION HANDLING FOR MONGODB***
         except:
             return "Failed to Add images to DB"
@@ -45,6 +44,7 @@ def grab_image_data():
                 image_data.append(inner)
                 inner = []
         image_data.append(inner)
+        print(image_data)
         return image_data
 
 
