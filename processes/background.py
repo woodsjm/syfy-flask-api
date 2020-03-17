@@ -3,12 +3,14 @@ import requests
 from credentials.auth import name, key, secret
 from utils.image_api import ImageApi
 
+
 image_api = ImageApi(name, key, secret)
 
 # ***FIX: REMOVE AFTER REFACTORING FOR CIRCULAR IMPORTS*** 
 def grab_db_session(mongo):
     global db
     db = mongo.db
+    update_image_data()
     return
 
 # ------------ Update Images from Cloudinary ------------
@@ -20,6 +22,7 @@ def update_image_data():
         try:
             coll = db['images']
             store_images_cursor = coll.insert(images)
+            coll.createIndex({"public_id": 1}, {unique: true})
         # ***FIX: ADD PROPER EXCEPTION HANDLING FOR MONGODB***
         except:
             return "Failed to Add images to DB"

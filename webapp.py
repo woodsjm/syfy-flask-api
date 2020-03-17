@@ -1,5 +1,6 @@
 from flask import Blueprint, Flask
 from flask_cors import CORS
+from flask_debug import Debug
 import sys
 import os
 
@@ -13,6 +14,7 @@ DEBUG = True
 PORT = 8000
 
 app = Flask(__name__)
+Debug(app)
 app.secret_key = 'randomstringxyxzyz'
 
 db = create_db(app)
@@ -29,5 +31,5 @@ def index():
     return 'SERVER WORKING'
 
 
-if __name__ == '__main__':
-    app.run(debug=DEBUG, port=PORT)
+# if __name__ == '__main__':
+app.run(debug=DEBUG, port=PORT)
