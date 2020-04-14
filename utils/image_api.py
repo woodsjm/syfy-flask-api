@@ -37,33 +37,13 @@ class ImageApi:
         else:
             data = response.json()
             image_data = data["resources"]
+            print(image_data)
             return([response.status_code, response.reason, image_data])
 
     def fetch_transformed_cloudinary_img(self, targetImg, sourceImg):
-        print(targetImg, sourceImg)
-
-        #img_url = 'https://res.cloudinary.com/dlwxbby8o/image/upload/s--F36O1M_f--/e_style_transfer,l_mona_lisa/v1584398849/test/neon.jpg'
-        img_url = cloudinary.CloudinaryImage(targetImg).build_url(effect="style_transfer", flags="attachment", overlay=sourceImg, sign_url=True, type="authenticated")
+        # Refactor method arguments
+        img_url = cloudinary.CloudinaryImage(targetImg).build_url(effect="style_transfer", flags="attachment", overlay=sourceImg, sign_url=True)
         return img_url
-        #return img_url
-        # try: 
-        #     response = requests.get(img_url)
-        #     response.raise_for_status()
-        # except requests.exceptions.HTTPError as errh:
-        #     print(f"Http Error: {errh}")
-        #     return [response.status_code, response.reason]
-        # except requests.exceptions.ConnectionError as errc:
-        #     print(f"Error Connecting: {errc}")
-        #     return [response.status_code, response.reason]
-        # except requests.exceptions.Timeout as errt:
-        #     print(f"Timeout Error: {errt}")
-        #     return [response.status_code, response.reason]
-        # except requests.exceptions.RequestException as err:
-        #     print(f"OOps: Something Else {err}")
-        #     return [response.status_code, response.reason]
-        # else:
-        #     print(type(response.content))
-        #     return [response.status_code, response.reason, response.content]
 
             
 

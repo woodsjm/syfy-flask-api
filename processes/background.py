@@ -1,8 +1,4 @@
 import requests
-from PIL import Image
-from flask import send_file
-import io
-
 
 from credentials.auth import name, key, secret
 from utils.image_api import ImageApi
@@ -53,12 +49,18 @@ def grab_image_data():
 
 # MAIN PROCESSES - FIX: REFACTOR BY BREAKING THESE OUT FROM BACKGROUND
 def grab_transformed_image(target, source):
-    print(source)
-    image = image_api.fetch_transformed_cloudinary_img(target, source)
-    if image:
-        return image  
+    most_recent_target = None
+    try:
+        coll = db['images']
+        image_version = coll.find_one({ 'public_id': target }, { 'version': 1, '_id': 0 })
+        most_recent_target = 'v' + str(image_version['version']) + '/' + target
+    except:
+        most_recent_target = target
     else:
-        return
+        print(most_recent_target)
+        image = image_api.fetch_transformed_cloudinary_img(most_recent_target, source)
+        if image:
+            return image
 
 def add_user():
     print("Hitting add_user")

@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, send_file, request
+from flask import Blueprint, jsonify, request
 import requests
 
 
@@ -19,10 +19,9 @@ def retrieve_images():
 
 @api.route('/download', methods=['POST', 'OPTIONS'])
 def download_image():
-    print("hitting download")
     imgOptions = request.get_json()
-
     source, target = None, None
+    # Refactor so request parsed in process
     if imgOptions:
         source = imgOptions['source']
         target = imgOptions['target']
@@ -34,7 +33,6 @@ def download_image():
     else:
         status = {"code": 200, "message": "OK"}
         return jsonify(data=secure_url, status=status)
-        #return jsonify(data=secureUrl, status={'code': 200, 'message': 'OK'})
     
     
 from processes.background import grab_image_data, grab_transformed_image
