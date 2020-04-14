@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 
 user = Blueprint('user', 'user', url_prefix='/user')
@@ -9,6 +9,8 @@ def login():
 
 @user.route('/register', methods=['POST'])
 def register():
+    print(request)
+    add_user()
     return "REGISTERED"
 
-from webapp import db
+from processes.background import add_user

@@ -33,4 +33,4 @@ def index():
 
 
 # if __name__ == '__main__':
-app.run(debug=DEBUG, port=PORT, use_reloader=False)
+app.run(debug=DEBUG, port=PORT, use_reloader=True)

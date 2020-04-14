@@ -1,4 +1,8 @@
 import requests
+from PIL import Image
+from flask import send_file
+import io
+
 
 from credentials.auth import name, key, secret
 from utils.image_api import ImageApi
@@ -32,7 +36,7 @@ def grab_image_data():
     try: 
         coll = db['images']
         image_data_cursor = coll.find({}, {'_id': 0, 'public_id': 1})
-    # ***FIX: ADD PROPER EXCEPTION HANDLING FOR MONGODB***
+    # ***FIX: ADD MORE COMPREHENSIVE EXCEPTION HANDLING FOR MONGODB***
     except:
         return "Failed to Retrieve images from DB"
     else:
@@ -46,6 +50,21 @@ def grab_image_data():
         image_data.append(inner)
         print(image_data)
         return image_data
+
+# MAIN PROCESSES - FIX: REFACTOR BY BREAKING THESE OUT FROM BACKGROUND
+def grab_transformed_image(target, source):
+    print(source)
+    image = image_api.fetch_transformed_cloudinary_img(target, source)
+    if image:
+        return image  
+    else:
+        return
+
+def add_user():
+    print("Hitting add_user")
+    return "Succes"
+
+
 
 
 
