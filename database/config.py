@@ -6,19 +6,20 @@ import urllib.parse
 
 
 def create_db(app):
+    # Heroku Credentials
+    username = os.environ.get('DATABASE_USERNAME')
+    password = os.environ.get('DATABASE_PASSWORD')
+
     # LOCAL CONFIG
     if not username and not password:
         MONGO_URL = 'mongodb://localhost:27017/syfy'
         app.config['MONGO_URI'] = MONGO_URL
         mongo = PyMongo(app)
-        
+
         return mongo
     
     # HEROKU CONFIG
     else:
-        # Heroku Credentials
-        username = os.environ.get('DATABASE_USERNAME')
-        password = os.environ.get('DATABASE_PASSWORD')
         escaped_username = urllib.parse.quote_plus(username)
         escaped_password = urllib.parse.quote_plus(password)
 

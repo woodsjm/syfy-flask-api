@@ -32,8 +32,13 @@ def index():
     return 'SERVER WORKING'
 
 if 'ON_HEROKU' in os.environ:
-    print('hitting')
-
+    print('=================')
+    print('Running on Heroku')
+    print('=================')
+else:
+    print('=================')
+    print('Running locally')
+    print('=================')
 
 # if __name__ == '__main__':
 app.run(debug=DEBUG, port=PORT, use_reloader=True)
