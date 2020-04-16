@@ -21,8 +21,8 @@ db = create_db(app)
 #db.db['images'].create_index("public_id", unique=True)
 grab_db_session(db)
 
-CORS(api, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(api, origins=['http://localhost:3000', 'https://www.syfywallpapers.site'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://www.syfywallpapers.site'], supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(api)
@@ -30,6 +30,9 @@ app.register_blueprint(api)
 @app.route('/')
 def index():
     return 'SERVER WORKING'
+
+if 'ON_HEROKU' in os.environ:
+    print('hitting')
 
 
 # if __name__ == '__main__':
