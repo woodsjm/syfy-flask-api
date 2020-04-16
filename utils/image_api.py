@@ -40,7 +40,10 @@ class ImageApi:
 
     def fetch_transformed_cloudinary_img(self, targetImg, sourceImg):
         # Refactor method arguments
+        print("INSIDE fetch_transformed_cloudinary_img")
         img_url = cloudinary.CloudinaryImage(targetImg).build_url(effect="style_transfer", flags="attachment", overlay=sourceImg, sign_url=True)
+        print("Here is response from Cloudinary")
+        print(img_url)
         return img_url
 
             

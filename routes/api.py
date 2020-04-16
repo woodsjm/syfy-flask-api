@@ -22,10 +22,13 @@ def download_image():
     imgOptions = request.get_json()
     source, target = None, None
     # Refactor so request parsed in process
+    print("HERE ARE IMGOPTIONS FROM REQUEST")
+    print(imgOptions)
     if imgOptions:
         source = imgOptions['source']
         target = imgOptions['target']
     try:
+        print("INSIDE ROUTE TRY BLOCK")
         secure_url = grab_transformed_image(imgOptions['target'], imgOptions['source'])
     except:
         status = {"code": 400, "message": "ERROR"}

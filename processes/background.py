@@ -52,6 +52,7 @@ def grab_image_data():
 def grab_transformed_image(target, source):
     most_recent_target = None
     try:
+        print("INSIDE GRAB TRANSFORMED IMAGE TRY BLOCK")
         coll = db['images']
         image_version = coll.find_one({ 'public_id': target }, { 'version': 1, '_id': 0 })
         most_recent_target = 'v' + str(image_version['version']) + '/' + target
