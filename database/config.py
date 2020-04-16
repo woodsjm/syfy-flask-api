@@ -21,13 +21,14 @@ def create_db(app):
         print("===================")
         print("INSIDE CREATE DB")
         print("===================")
-        escaped_username = urllib.parse.quote_plus(username)
+        #escaped_username = urllib.parse.quote_plus(username)
         escaped_password = urllib.parse.quote_plus(password)
 
         connection_string = os.environ.get('DATABASE_CONNECTION_STRING')
 
-        colon = urllib.parse.quote_plus(':')
-        MONGO_URL = 'mongodb:+srv//' + escaped_username + colon + escaped_password + connection_string
+        #colon = urllib.parse.quote_plus(':')
+        url_base = f'mongodb:+srv//{username}:'
+        MONGO_URL = url_base + escaped_password + connection_string
         print("MONGO_URL: ", MONGO_URL)
         mongo = MongoClient(MONGO_URL)
 
