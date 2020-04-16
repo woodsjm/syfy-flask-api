@@ -62,6 +62,7 @@ def grab_transformed_image(target, source):
         most_recent_target = target
     else:
         print(most_recent_target)
+        sys.stdout.flush()
         image = image_api.fetch_transformed_cloudinary_img(most_recent_target, source)
         if image:
             return image
