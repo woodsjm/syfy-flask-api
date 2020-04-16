@@ -20,10 +20,20 @@ def create_db(app):
     
     # HEROKU CONFIG
     else:
+        print("===================")
+        print("INSIDE CREATE DB")
+        print("===================")
+        print("USERNAME: ", username)
+        print("PASSWORD: ", password)
         escaped_username = urllib.parse.quote_plus(username)
         escaped_password = urllib.parse.quote_plus(password)
 
+        print("ESCAPED USERNAME: ", escaped_username)
+        print("ESCAPED PASSWORD: ", escaped_password)
+
         connection_string = os.environ.get('DATABASE_CONNECTION_STRING')
+
+        print("CONNECTION STRING: ", connection_string)
         MONGO_URL = 'mongodb://' + escaped_username + ':' + escaped_password + connection_string
         mongo = MongoClient(MONGO_URL)
 
