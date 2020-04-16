@@ -10,6 +10,7 @@ image_api = ImageApi(name, key, secret)
 def grab_db_session(mongo):
     global db
     db = mongo.db
+    # FIX: MOVE update_image_data() INTO HEROKU BACKGROUND JOB
     # update_image_data()
     return
 
@@ -20,8 +21,6 @@ def update_image_data():
     code, reason, images = image_api.fetch_cloudinary_images()
     if code == 200:
         try:
-            print("============")
-            print("About to insert image data")
             coll = db['images']
             store_images_cursor = coll.insert(images)
         # ***FIX: ADD PROPER EXCEPTION HANDLING FOR MONGODB***

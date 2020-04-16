@@ -1,8 +1,8 @@
 from flask import Blueprint, Flask
 from flask_cors import CORS
 from flask_debug import Debug
-import sys
 import os
+import sys
 
 from processes.background import grab_db_session
 from database.config import create_db
@@ -17,8 +17,9 @@ app = Flask(__name__)
 Debug(app)
 app.secret_key = 'randomstringxyxzyz'
 
+# Configure and initialize DB
 db = create_db(app)
-#db.db['images'].create_index("public_id", unique=True)
+# Pass DB session to Background Processes Module
 grab_db_session(db)
 
 CORS(api, origins=['http://localhost:3000', 'https://www.syfywallpapers.site'], supports_credentials=True)
@@ -29,16 +30,10 @@ app.register_blueprint(api)
 
 @app.route('/')
 def index():
-    return 'SERVER WORKING'
-
-if 'ON_HEROKU' in os.environ:
-    print('=================')
-    print('Running on Heroku')
-    print('=================')
-else:
-    print('=================')
-    print('Running locally')
-    print('=================')
+    if 'ON_HEROKU' in os.environ:
+        return 'HEROKU SERVER WORKING'
+    else:
+        return 'LOCAL SERVER WORKING'
 
 if __name__ == '__main__':
     app.run(debug=DEBUG, port=PORT, use_reloader=False)
