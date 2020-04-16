@@ -10,7 +10,7 @@ image_api = ImageApi(name, key, secret)
 def grab_db_session(mongo):
     global db
     db = mongo.db
-    update_image_data()
+    # update_image_data()
     return
 
 # ------------ Update Images from Cloudinary ------------
