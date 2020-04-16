@@ -1,6 +1,7 @@
 from flask import g, Response
 import cloudinary
 import requests
+import sys
 
 
 class ImageApi:
@@ -41,9 +42,12 @@ class ImageApi:
     def fetch_transformed_cloudinary_img(self, targetImg, sourceImg):
         # Refactor method arguments
         print("INSIDE fetch_transformed_cloudinary_img")
+        sys.stdout.flush()
         img_url = cloudinary.CloudinaryImage(targetImg).build_url(effect="style_transfer", flags="attachment", overlay=sourceImg, sign_url=True)
         print("Here is response from Cloudinary")
+        sys.stdout.flush()
         print(img_url)
+        sys.stdout.flush()
         return img_url
 
             

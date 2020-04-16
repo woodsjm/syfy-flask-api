@@ -1,4 +1,5 @@
 import requests
+import sys
 
 from credentials.auth import name, key, secret
 from utils.image_api import ImageApi
@@ -53,6 +54,7 @@ def grab_transformed_image(target, source):
     most_recent_target = None
     try:
         print("INSIDE GRAB TRANSFORMED IMAGE TRY BLOCK")
+        sys.stdout.flush()
         coll = db['images']
         image_version = coll.find_one({ 'public_id': target }, { 'version': 1, '_id': 0 })
         most_recent_target = 'v' + str(image_version['version']) + '/' + target

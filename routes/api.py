@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 import requests
 
+import sys
+
 
 api = Blueprint('api', 'api', url_prefix='/api')
 
@@ -24,11 +26,13 @@ def download_image():
     # Refactor so request parsed in process
     print("HERE ARE IMGOPTIONS FROM REQUEST")
     print(imgOptions)
+    sys.stdout.flush()
     if imgOptions:
         source = imgOptions['source']
         target = imgOptions['target']
     try:
         print("INSIDE ROUTE TRY BLOCK")
+        sys.stdout.flush()
         secure_url = grab_transformed_image(imgOptions['target'], imgOptions['source'])
     except:
         status = {"code": 400, "message": "ERROR"}
