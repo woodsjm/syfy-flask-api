@@ -9,6 +9,8 @@ api = Blueprint('api', 'api', url_prefix='/api')
 # ------------ Get Images for Main Feed ------------
 @api.route('/images', methods=['GET'])
 def retrieve_images():
+    print("Hitting retrieve_images")
+    sys.stdout.flush()
     try:
         data = grab_image_data()
     # ***FIX: ADD PROPER EXCEPTION HANDLING FOR FLASK RESPONSE***   
@@ -21,18 +23,15 @@ def retrieve_images():
 
 @api.route('/download', methods=['POST', 'OPTIONS'])
 def download_image():
+    print("Hitting download_image")
+    sys.stdout.flush()
     imgOptions = request.get_json()
     source, target = None, None
     # Refactor so request parsed in process
-    print("HERE ARE IMGOPTIONS FROM REQUEST")
-    print(imgOptions)
-    sys.stdout.flush()
     if imgOptions:
         source = imgOptions['source']
         target = imgOptions['target']
     try:
-        print("INSIDE ROUTE TRY BLOCK")
-        sys.stdout.flush()
         secure_url = grab_transformed_image(imgOptions['target'], imgOptions['source'])
     except:
         status = {"code": 400, "message": "ERROR"}

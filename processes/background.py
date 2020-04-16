@@ -47,22 +47,19 @@ def grab_image_data():
                 inner = []
         image_data.append(inner)
         print(image_data)
+        sys.stdout.flush()
         return image_data
 
 # MAIN PROCESSES - FIX: REFACTOR BY BREAKING THESE OUT FROM BACKGROUND
 def grab_transformed_image(target, source):
     most_recent_target = None
     try:
-        print("INSIDE GRAB TRANSFORMED IMAGE TRY BLOCK")
-        sys.stdout.flush()
         coll = db['images']
         image_version = coll.find_one({ 'public_id': target }, { 'version': 1, '_id': 0 })
         most_recent_target = 'v' + str(image_version['version']) + '/' + target
     except:
         most_recent_target = target
     else:
-        print(most_recent_target)
-        sys.stdout.flush()
         image = image_api.fetch_transformed_cloudinary_img(most_recent_target, source)
         if image:
             return image

@@ -24,14 +24,14 @@ grab_db_session(db)
 
 origins = [
     'http://localhost:3000',
-    'https://www.syfywallpapers.site',
-    'https://www.syfywallpapers.site/',
-    'http://www.syfywallpapers.site',
-    'http://www.syfywallpapers.site/',
-    'www.syfywallpapers.site',
-    'www.syfywallpapers.site/',
-    'syfywallpapers.site',
-    'syfywallpapers.site/'
+    'https://www.syfywallpapers.site'
+    # 'https://www.syfywallpapers.site/',
+    # 'http://www.syfywallpapers.site',
+    # 'http://www.syfywallpapers.site/',
+    # 'www.syfywallpapers.site',
+    # 'www.syfywallpapers.site/',
+    # 'syfywallpapers.site',
+    # 'syfywallpapers.site/'
 ]
 
 CORS(api, origins=origins, supports_credentials=True)
