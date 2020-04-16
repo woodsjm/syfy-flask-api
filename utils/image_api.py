@@ -1,8 +1,6 @@
+from flask import g, Response
 import cloudinary
 import requests
-from bs4 import BeautifulSoup as BSHTML
-
-from flask import g, Response
 
 
 class ImageApi:
