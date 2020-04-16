@@ -20,6 +20,8 @@ def update_image_data():
     code, reason, images = image_api.fetch_cloudinary_images()
     if code == 200:
         try:
+            print("============")
+            print("About to insert image data")
             coll = db['images']
             store_images_cursor = coll.insert(images)
         # ***FIX: ADD PROPER EXCEPTION HANDLING FOR MONGODB***
