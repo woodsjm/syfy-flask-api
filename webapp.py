@@ -22,8 +22,20 @@ db = create_db(app)
 # Pass DB session to Background Processes Module
 grab_db_session(db)
 
-CORS(api, origins=['http://localhost:3000', 'https://www.syfywallpapers.site'], supports_credentials=True)
-CORS(user, origins=['http://localhost:3000', 'https://www.syfywallpapers.site'], supports_credentials=True)
+origins = [
+    'http://localhost:3000',
+    'https://www.syfywallpapers.site',
+    'https://www.syfywallpapers.site/',
+    'http://www.syfywallpapers.site',
+    'http://www.syfywallpapers.site/',
+    'www.syfywallpapers.site',
+    'www.syfywallpapers.site/',
+    'syfywallpapers.site',
+    'syfywallpapers.site/'
+]
+
+CORS(api, origins=origins, supports_credentials=True)
+CORS(user, origins=origins, supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(api)
