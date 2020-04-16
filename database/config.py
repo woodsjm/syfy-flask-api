@@ -34,7 +34,9 @@ def create_db(app):
         connection_string = os.environ.get('DATABASE_CONNECTION_STRING')
 
         print("CONNECTION STRING: ", connection_string)
-        MONGO_URL = 'mongodb://' + escaped_username + ':' + escaped_password + connection_string
-        mongo = MongoClient(MONGO_URL)
+
+        test_url = os.environ.get('DATABASE_URL')
+        #MONGO_URL = 'mongodb://' + escaped_username + ':' + escaped_password + connection_string
+        mongo = MongoClient(test_url)
 
         return mongo
