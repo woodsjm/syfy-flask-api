@@ -40,5 +40,5 @@ else:
     print('Running locally')
     print('=================')
 
-# if __name__ == '__main__':
-app.run(debug=DEBUG, port=PORT, use_reloader=True)
+if __name__ == '__main__':
+    app.run(debug=DEBUG, port=PORT, use_reloader=False)
