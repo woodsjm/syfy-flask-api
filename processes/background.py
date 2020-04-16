@@ -12,7 +12,7 @@ def grab_db_session(mongo):
     global db
     db = mongo.db
     # FIX: MOVE update_image_data() INTO HEROKU BACKGROUND JOB
-    # update_image_data()
+    update_image_data()
     return
 
 # ------------ Update Images from Cloudinary ------------

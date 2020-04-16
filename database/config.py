@@ -14,14 +14,13 @@ def create_db(app):
     if not username and not password:
         MONGO_URL = 'mongodb://localhost:27017/syfy'
         mongo = MongoClient(MONGO_URL)
-        
+
         return mongo
     
     # HEROKU CONFIG
     else:
-        connection_string = os.environ.get('DATABASE_CONNECTION_STRING')
-        url = f'mongodb:+srv//{username}:{password}{connection_string}'
-        MONGO_URL = urllib.parse.quote_plus(url)
+        escaped_password = urllib.parse.quote_plus(password)
+        MONGO_URL = f'mongodb+srv://{username}:{escaped_password}@syfy-cluster-cpjop.gcp.mongodb.net/test?retryWrites=true&w=majority'
         mongo = MongoClient(MONGO_URL)
 
         return mongo
