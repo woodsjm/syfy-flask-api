@@ -26,13 +26,15 @@ def download_image():
     print("Hitting download_image")
     sys.stdout.flush()
     imgOptions = request.get_json()
-    source, target = None, None
+    source, target, dev_h, dev_w = None, None, None, None
     # Refactor so request parsed in process
     if imgOptions:
         source = imgOptions['source']
         target = imgOptions['target']
+        dev_h = imgOptions['devH']
+        dev_w = imgOptions['devW']
     try:
-        secure_url = grab_transformed_image(imgOptions['target'], imgOptions['source'])
+        secure_url = grab_transformed_image(target, source, dev_h, dev_w)
     except:
         status = {"code": 400, "message": "ERROR"}
         return jsonify(data={}, status=status) 

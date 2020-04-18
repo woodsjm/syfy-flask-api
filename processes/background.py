@@ -51,7 +51,7 @@ def grab_image_data():
         return image_data
 
 # MAIN PROCESSES - FIX: REFACTOR BY BREAKING THESE OUT FROM BACKGROUND
-def grab_transformed_image(target, source):
+def grab_transformed_image(target, source, dev_h, dev_w):
     most_recent_target = None
     try:
         coll = db['images']
@@ -60,7 +60,7 @@ def grab_transformed_image(target, source):
     except:
         most_recent_target = target
     else:
-        image = image_api.fetch_transformed_cloudinary_img(most_recent_target, source)
+        image = image_api.fetch_transformed_cloudinary_img(most_recent_target, source, dev_h, dev_w)
         if image:
             return image
 
