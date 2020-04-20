@@ -39,14 +39,8 @@ class ImageApi:
             print(image_data)
             return([response.status_code, response.reason, image_data])
 
-    def fetch_transformed_cloudinary_img(self, targetImg, sourceImg, dev_h, dev_w):
-        transformations = [
-            {'crop': 'crop', 'height': dev_h, 'width': dev_w},
-
-            {'effect': "style_transfer", "flags": "attachment", "overlay": sourceImg}
-        ]
-
-        img_url = cloudinary.CloudinaryImage(targetImg).build_url(format='jpg', transformation=transformations)
+    def fetch_transformed_cloudinary_img(self, source, transformations):
+        img_url = cloudinary.CloudinaryImage(source).build_url(format='jpg', transformation=transformations)
         try:
             response = requests.get(img_url)
             response.raise_for_status()

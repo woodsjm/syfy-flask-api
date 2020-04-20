@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 import requests
 
+import json
 import sys
 
 
@@ -25,16 +26,15 @@ def retrieve_images():
 def download_image():
     print("Hitting download_image")
     sys.stdout.flush()
-    imgOptions = request.get_json()
-    source, target, dev_h, dev_w = None, None, None, None
-    # Refactor so request parsed in process
-    if imgOptions:
-        source = imgOptions['source']
-        target = imgOptions['target']
-        dev_h = imgOptions['devH']
-        dev_w = imgOptions['devW']
+    
+    parsed_json = request.get_json()
+    source, transformations = None, None
+    if parsed_json:
+        source = parsed_json['source']
+        transformations = [transformation for transformation in parsed_json['options']]
+
     try:
-        secure_url = grab_transformed_image(target, source, dev_h, dev_w)
+        secure_url = grab_transformed_image(source, transformations)
     except:
         status = {"code": 400, "message": "ERROR"}
         return jsonify(data={}, status=status) 
