@@ -13,8 +13,9 @@ def create_db(app):
     # LOCAL CONFIG
     if not username and not password:
         MONGO_URL = 'mongodb://localhost:27017/syfy'
-        mongo = MongoClient(MONGO_URL)
-
+        app.config['MONGO_URI'] = MONGO_URL
+        mongo = PyMongo(app)
+        print("inside local db config")
         return mongo
     
     # HEROKU CONFIG

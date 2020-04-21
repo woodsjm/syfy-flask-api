@@ -42,10 +42,11 @@ def grab_image_data():
         inner = []
         for doc in image_data_cursor:
             inner.append(doc['public_id'])
-            if len(inner) == 3:
+            if len(inner) == 5:
                 image_data.append(inner)
-                inner = []
-        image_data.append(inner)
+                inner = [] 
+        if len(inner) > 0:
+            image_data.append(inner)
         print(image_data)
         sys.stdout.flush()
         return image_data
