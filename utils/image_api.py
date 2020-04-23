@@ -40,7 +40,7 @@ class ImageApi:
             return([response.status_code, response.reason, image_data])
 
     def fetch_transformed_cloudinary_img(self, source, transformations):
-        img_url = cloudinary.CloudinaryImage(source).build_url(format='jpg', transformation=transformations)
+        img_url = cloudinary.CloudinaryImage(source).build_url(transformation=transformations)
         try:
             response = requests.get(img_url)
             response.raise_for_status()
