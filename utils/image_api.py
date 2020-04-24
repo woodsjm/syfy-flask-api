@@ -16,7 +16,7 @@ class ImageApi:
         print(self.name)
 
     def fetch_cloudinary_images(self):
-        url_list = cloudinary.utils.cloudinary_url("lg.json", type="list")
+        url_list = cloudinary.utils.cloudinary_url("prod.json", type="list")
         print(url_list)
         try:
             response = requests.get(url_list[0])
