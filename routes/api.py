@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from utils.ip_hanlder import handle_ip
+from utils.ip_handler import handle_ip
 import requests
 
 import json
