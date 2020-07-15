@@ -18,7 +18,6 @@ def grab_db_session(mongo):
 # ------------ Update Images from Cloudinary ------------
 # ***FIX: NEED TO MAKE THIS A NIGHTLY PROCESS AFTER DEPLOY***
 def update_image_data():
-    print("Hitting update_image_data")
     code, reason, images = image_api.fetch_cloudinary_images()
     if code == 200:
         try:
@@ -47,8 +46,6 @@ def grab_image_data():
                 inner = [] 
         if len(inner) > 0:
             image_data.append(inner)
-        print(image_data)
-        sys.stdout.flush()
         return image_data
 
 # MAIN PROCESSES - FIX: REFACTOR BY BREAKING THESE OUT FROM BACKGROUND

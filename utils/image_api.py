@@ -36,7 +36,6 @@ class ImageApi:
         else:
             data = response.json()
             image_data = data["resources"]
-            print(image_data)
             return([response.status_code, response.reason, image_data])
 
     def fetch_transformed_cloudinary_img(self, source, transformations):
