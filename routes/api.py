@@ -12,6 +12,9 @@ api = Blueprint('api', 'api', url_prefix='/api')
 def retrieve_images():
     print("Hitting retrieve_images")
     sys.stdout.flush()
+    visitor_addr = request.environ['REMOTE_ADDR']
+    print(visitor_addr)
+    sys.stdout.flush()
     try:
         data = grab_image_data()
     # ***FIX: ADD PROPER EXCEPTION HANDLING FOR FLASK RESPONSE***   
