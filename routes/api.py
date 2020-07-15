@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from utils.ip_hanlder import handle_ip
 import requests
 
 import json
@@ -13,9 +14,7 @@ def retrieve_images():
     print("Hitting retrieve_images")
     sys.stdout.flush()
     visitor_addr = request.environ['REMOTE_ADDR']
-    print("Visitor ip: =====v")
-    print(visitor_addr)
-
+    handle_ip(visitor_addr)
     try:
         data = grab_image_data()
     # ***FIX: ADD PROPER EXCEPTION HANDLING FOR FLASK RESPONSE***   
