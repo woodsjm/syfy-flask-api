@@ -1,5 +1,5 @@
 import os
-from urllib2 import Request, urlopen
+from urllib import Request, urlopen
 
 def handle_ip(remote_ip):
     print("===========")
